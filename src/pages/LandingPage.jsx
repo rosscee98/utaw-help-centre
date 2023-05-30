@@ -1,5 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Link, Text } from "@chakra-ui/react";
 import PageGrid from "../components/PageGrid";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 export default function LandingPage() {
   return (
@@ -10,7 +11,10 @@ export default function LandingPage() {
         </Text>
         <Text fontSize="lg">
           Joining UTAW takes two minutes:{" "}
-          <a href="https://utaw.tech/join">utaw.tech/join</a>.
+          <Link color="blue" href="https://utaw.tech/join" isExternal>
+            utaw.tech/join <ExternalLinkIcon />
+          </Link>
+          .
         </Text>
       </Box>
       <PageGrid />

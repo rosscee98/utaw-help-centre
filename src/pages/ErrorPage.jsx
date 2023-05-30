@@ -1,5 +1,5 @@
-import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, HStack, Heading, Link } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export default function ErrorPage() {
   return (
@@ -7,7 +7,7 @@ export default function ErrorPage() {
       <Box>
         <Heading>Something went wrong.</Heading>
         <Box marginTop="20px">
-          <Link to="/" marginTop="20px">
+          <Link as={ReactRouterLink} to="/" marginTop="20px">
             Home
           </Link>
         </Box>
