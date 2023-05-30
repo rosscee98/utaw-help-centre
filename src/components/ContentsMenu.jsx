@@ -1,37 +1,56 @@
 import PropTypes from "prop-types";
-import { Box, Button, OrderedList, Text, useBoolean } from "@chakra-ui/react";
-import { FiChevronUp, FiChevronDown } from "react-icons/fi";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Flex,
+  Link,
+  OrderedList,
+  Text,
+} from "@chakra-ui/react";
+import { HashLink } from "react-router-hash-link";
 
 export default function ContentsMenu({ sections }) {
-  const [isOpen, setIsOpen] = useBoolean();
-
   return (
-    <Box bg="lightgray" paddingY="10px">
-      <Button
-        rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />}
-        onClick={setIsOpen.toggle}
-        variant="link"
-        marginLeft="15px"
-      >
-        Contents
-      </Button>
-      {isOpen ? (
-        <OrderedList>
-          {sections.map(({ title, children }) => (
-            <Box key={title}>
-              <Text fontWeight="bold">{title}</Text>
-              {children
-                ? children.map(({ title }) => (
-                    <Text key={title} marginLeft="20px">
-                      {title}
-                    </Text>
-                  ))
-                : null}
-            </Box>
-          ))}
-        </OrderedList>
-      ) : null}
-    </Box>
+    <Accordion allowToggle>
+      <AccordionItem>
+        <AccordionButton>
+          <Text>Contents</Text>
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <OrderedList>
+            {sections.map(({ title, id, children }) => (
+              <Box key={title}>
+                <Link as={HashLink} to={`/redundancy#${id}`} fontWeight="bold">
+                  {title}
+                </Link>
+                <Flex flexDirection="column">
+                  {children
+                    ? children.map(({ title, id }) => (
+                        <Link
+                          key={title}
+                          as={HashLink}
+                          to={`/redundancy#${id}`}
+                          marginLeft="20px"
+                          smooth
+                          marginY="4px"
+                          lineHeight="18px"
+                        >
+                          {title}
+                        </Link>
+                      ))
+                    : null}
+                </Flex>
+              </Box>
+            ))}
+          </OrderedList>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   );
 }
 

@@ -1,9 +1,18 @@
-import { Box, Divider, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import ContentsMenu from "../components/ContentsMenu";
 import { redundancyPageData } from "../redundancy-data";
+import { useEffect } from "react";
 
 export default function GuidePage() {
   const { title, sections } = redundancyPageData;
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      element.scrollIntoView();
+    }
+  });
 
   return (
     <>
@@ -11,16 +20,17 @@ export default function GuidePage() {
         {title}
       </Heading>
       <ContentsMenu sections={sections} />
-      <Divider marginY="20px" />
       <Box>
-        {sections.map(({ title, content, children }) => (
+        {sections.map(({ title, id, content, children }) => (
           <Box key={title} marginY="30px">
-            <Heading key={title}>{title}</Heading>
+            <Heading id={id} key={id} tabindex="-1">
+              {title}
+            </Heading>
             {content ? <Text>{content}</Text> : null}
             {children
-              ? children.map(({ title, content }) => (
-                  <Box key={title} marginY="10px">
-                    <Heading as="h3" size="md">
+              ? children.map(({ title, id, content }) => (
+                  <Box key={id} marginY="10px">
+                    <Heading id={id} as="h3" size="md" tabindex="-1">
                       {title}
                     </Heading>
                     <Text>{content}</Text>
