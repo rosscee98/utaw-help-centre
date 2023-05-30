@@ -1,21 +1,21 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
-import PageGrid from "./components/PageGrid";
+import { Route, Routes } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import GuidePage from "./pages/GuidePage";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
   return (
     <Box padding="15px">
       <Navbar />
       <Box marginY="20px">
-        <Text fontSize="lg">
-          Find advice by tech workers, for tech workers.
-        </Text>
-        <Text fontSize="lg">
-          Joining UTAW takes two minutes:{" "}
-          <a href="utaw.tech/join">utaw.tech/join</a>.
-        </Text>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/redundancy" element={<GuidePage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
       </Box>
-      <PageGrid />
     </Box>
   );
 }
