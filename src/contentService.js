@@ -8,5 +8,5 @@ const client = createClient({
 });
 
 export async function getGuides() {
-  return client.fetch('*[_type == "guide"]');
+  return client.fetch('*[_type == "guide"] | order(_createdAt asc)');
 }

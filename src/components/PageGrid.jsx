@@ -22,7 +22,13 @@ export default function PageGrid({ guides }) {
           padding="10px"
         >
           <Heading color="white" size="lg">
-            <LinkOverlay as={ReactRouterLink} to={slug.current}>
+            <LinkOverlay
+              as={ReactRouterLink}
+              to={slug.current}
+              _hover={{ color: "white", textDecoration: "underline" }}
+              _active={{ color: "white", textDecoration: "underline" }}
+              _focus={{ color: "white", textDecoration: "underline" }}
+            >
               {title}
             </LinkOverlay>
           </Heading>
