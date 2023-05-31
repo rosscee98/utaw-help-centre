@@ -1,12 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  Box,
-  Divider,
-  Heading,
-  Link,
-  ListItem,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Box, Divider, Heading, Link } from "@chakra-ui/react";
 import ContentsMenu from "../components/ContentsMenu";
 import { useEffect } from "react";
 import { PortableText } from "@portabletext/react";
@@ -84,22 +77,6 @@ export default function GuidePage({ guide }) {
           </Box>
         ))}
       </Box>
-      <ul>
-        <li>
-          hi
-          <ul>
-            <li>hi</li>
-          </ul>
-        </li>
-      </ul>
-      <UnorderedList>
-        <ListItem>
-          hi
-          <UnorderedList>
-            <ListItem>hi</ListItem>
-          </UnorderedList>
-        </ListItem>
-      </UnorderedList>
     </>
   );
 }
