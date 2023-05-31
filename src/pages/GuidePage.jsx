@@ -1,8 +1,39 @@
 import PropTypes from "prop-types";
-import { Box, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Heading,
+  Link,
+  ListItem,
+  UnorderedList,
+} from "@chakra-ui/react";
 import ContentsMenu from "../components/ContentsMenu";
 import { useEffect } from "react";
 import { PortableText } from "@portabletext/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
+const portableTextComponents = {
+  marks: {
+    link: ({ value, children }) => (
+      <Link isExternal href={value?.href} color="blue">
+        {children} <ExternalLinkIcon />
+      </Link>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul
+        style={{
+          marginLeft: "20px",
+          marginBottom: "20px",
+          "ul ul &": { marginBottom: "0" },
+        }}
+      >
+        {children}
+      </ul>
+    ),
+  },
+};
 
 export default function GuidePage({ guide }) {
   const { title, sections } = guide;
@@ -17,28 +48,58 @@ export default function GuidePage({ guide }) {
 
   return (
     <>
-      <Heading as="h1" size="2xl" marginBottom="30px">
+      <Heading as="h1" size="2xl" marginY="30px">
         {title}
       </Heading>
       <ContentsMenu sections={sections} />
       <Box>
-        {sections?.map(({ title, slug, content, children }) => (
-          <Box key={title} marginY="30px">
-            <Heading id={slug.current} key={slug.current}>
-              {title}
-            </Heading>
-            <PortableText value={content} />
-            {children?.map(({ title, slug, content }) => (
-              <Box key={slug.current} marginY="10px">
-                <Heading id={slug.current} as="h3" size="md">
-                  {title}
-                </Heading>
-                <PortableText value={content} />
-              </Box>
-            ))}
+        {sections?.map(({ title, slug, content, children }, index) => (
+          <Box key={title}>
+            <Box marginY="40px">
+              <Heading id={slug.current} key={slug.current} marginBottom="20px">
+                {title}
+              </Heading>
+              <PortableText
+                value={content}
+                components={portableTextComponents}
+              />
+              {children?.map(({ title, slug, content }) => (
+                <Box key={slug.current} marginY="30px">
+                  <Heading
+                    id={slug.current}
+                    as="h3"
+                    size="md"
+                    marginBottom="10px"
+                  >
+                    {title}
+                  </Heading>
+                  <PortableText
+                    value={content}
+                    components={portableTextComponents}
+                  />
+                </Box>
+              ))}
+            </Box>
+            {index < sections.length - 1 ? <Divider /> : null}
           </Box>
         ))}
       </Box>
+      <ul>
+        <li>
+          hi
+          <ul>
+            <li>hi</li>
+          </ul>
+        </li>
+      </ul>
+      <UnorderedList>
+        <ListItem>
+          hi
+          <UnorderedList>
+            <ListItem>hi</ListItem>
+          </UnorderedList>
+        </ListItem>
+      </UnorderedList>
     </>
   );
 }

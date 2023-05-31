@@ -26,8 +26,6 @@ export default function PageGrid({ guides }) {
               as={ReactRouterLink}
               to={slug.current}
               _hover={{ color: "white", textDecoration: "underline" }}
-              _active={{ color: "white", textDecoration: "underline" }}
-              _focus={{ color: "white", textDecoration: "underline" }}
             >
               {title}
             </LinkOverlay>

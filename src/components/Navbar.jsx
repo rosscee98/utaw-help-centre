@@ -1,17 +1,21 @@
-import { HStack, Heading, Image, Link } from "@chakra-ui/react";
+import { HStack, Heading, Image, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <HStack borderBottom="1px solid lightgray" paddingBottom="10px">
-      <Link as={ReactRouterLink} to="/">
-        <HStack gap="5px">
-          <Image src="utaw-logo.webp" width="70px" />
+      <LinkBox as={HStack} gap="5px">
+        <Image src="utaw-logo.webp" width="70px" />
+        <LinkOverlay
+          as={ReactRouterLink}
+          to="/"
+          _hover={{ textDecoration: "underline tomato" }}
+        >
           <Heading size="lg" color="tomato">
             Help Centre
           </Heading>
-        </HStack>
-      </Link>
+        </LinkOverlay>
+      </LinkBox>
     </HStack>
   );
 }
