@@ -9,6 +9,8 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      VITE_SANITY_IO_PROJECT_ID: ${{ secrets.VITE_SANITY_IO_PROJECT_ID }}
+      VITE_SANITY_IO_DATASET: ${{ secrets.VITE_SANITY_IO_DATASET }}
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
