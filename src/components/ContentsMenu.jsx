@@ -23,27 +23,30 @@ export default function ContentsMenu({ sections }) {
         </AccordionButton>
         <AccordionPanel>
           <OrderedList>
-            {sections.map(({ title, id, children }) => (
+            {sections?.map(({ title, slug, children }) => (
               <Box key={title}>
-                <Link as={HashLink} to={`/redundancy#${id}`} fontWeight="bold">
+                {/* TODO: remove hardcoded 'redundancy' from link */}
+                <Link
+                  as={HashLink}
+                  to={`/redundancy#${slug.current}`}
+                  fontWeight="bold"
+                  smooth
+                >
                   {title}
                 </Link>
-                <Flex flexDirection="column">
-                  {children
-                    ? children.map(({ title, id }) => (
-                        <Link
-                          key={title}
-                          as={HashLink}
-                          to={`/redundancy#${id}`}
-                          marginLeft="20px"
-                          smooth
-                          marginY="4px"
-                          lineHeight="18px"
-                        >
-                          {title}
-                        </Link>
-                      ))
-                    : null}
+                <Flex flexDirection="column" marginLeft="20px">
+                  {children?.map(({ title, slug }) => (
+                    <Link
+                      key={title}
+                      as={HashLink}
+                      to={`/redundancy#${slug.current}`}
+                      smooth
+                      marginY="4px"
+                      lineHeight="18px"
+                    >
+                      {title}
+                    </Link>
+                  ))}
                 </Flex>
               </Box>
             ))}

@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import { Box, Link, Text } from "@chakra-ui/react";
 import PageGrid from "../components/PageGrid";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export default function LandingPage() {
+export default function LandingPage({ guides }) {
   return (
     <>
       <Box marginBottom="20px">
@@ -17,7 +18,11 @@ export default function LandingPage() {
           .
         </Text>
       </Box>
-      <PageGrid />
+      <PageGrid guides={guides} />
     </>
   );
 }
+
+LandingPage.propTypes = {
+  guides: PropTypes.array,
+};

@@ -1,10 +1,11 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { Box, Heading } from "@chakra-ui/react";
 import ContentsMenu from "../components/ContentsMenu";
-import { redundancyPageData } from "../redundancy-data";
 import { useEffect } from "react";
+import { PortableText } from "@portabletext/react";
 
-export default function GuidePage() {
-  const { title, sections } = redundancyPageData;
+export default function GuidePage({ guide }) {
+  const { title, sections } = guide;
 
   useEffect(() => {
     if (window.location.hash) {
@@ -21,25 +22,27 @@ export default function GuidePage() {
       </Heading>
       <ContentsMenu sections={sections} />
       <Box>
-        {sections.map(({ title, id, content, children }) => (
+        {sections?.map(({ title, slug, content, children }) => (
           <Box key={title} marginY="30px">
-            <Heading id={id} key={id} tabindex="-1">
+            <Heading id={slug.current} key={slug.current}>
               {title}
             </Heading>
-            {content ? <Text>{content}</Text> : null}
-            {children
-              ? children.map(({ title, id, content }) => (
-                  <Box key={id} marginY="10px">
-                    <Heading id={id} as="h3" size="md" tabindex="-1">
-                      {title}
-                    </Heading>
-                    <Text>{content}</Text>
-                  </Box>
-                ))
-              : null}
+            <PortableText value={content} />
+            {children?.map(({ title, slug, content }) => (
+              <Box key={slug.current} marginY="10px">
+                <Heading id={slug.current} as="h3" size="md">
+                  {title}
+                </Heading>
+                <PortableText value={content} />
+              </Box>
+            ))}
           </Box>
         ))}
       </Box>
     </>
   );
 }
+
+GuidePage.propTypes = {
+  guide: PropTypes.object,
+};
