@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
-import { Box, Flex, Link, OrderedList } from "@chakra-ui/react";
+import { Box, Flex, Link, OrderedList, useColorMode } from "@chakra-ui/react";
 import { HashLink } from "react-router-hash-link";
 
 export default function SidebarMenu({ sections }) {
+  const { colorMode } = useColorMode();
+
   return (
     <OrderedList
       minWidth="310px"
@@ -10,10 +12,9 @@ export default function SidebarMenu({ sections }) {
       position="sticky"
       top="0"
       maxHeight="100vh"
-      paddingY="30px"
+      paddingBottom="30px"
       paddingRight="30px"
       overflowY="auto"
-      borderRight="1px solid lightgray"
     >
       {sections?.map(({ title, slug, children }) => (
         <Box key={title} marginY="6px">
@@ -22,6 +23,7 @@ export default function SidebarMenu({ sections }) {
             as={HashLink}
             to={`/redundancy#${slug.current}`}
             fontWeight="bold"
+            variant={colorMode}
             smooth
           >
             {title}
@@ -32,6 +34,7 @@ export default function SidebarMenu({ sections }) {
                 key={title}
                 as={HashLink}
                 to={`/redundancy#${slug.current}`}
+                variant={colorMode}
                 smooth
                 marginY="6px"
                 lineHeight="20px"

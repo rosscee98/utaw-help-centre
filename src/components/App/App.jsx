@@ -1,5 +1,5 @@
 import { Box, useBreakpointValue } from "@chakra-ui/react";
-import Navbar from "./helpers/Navbar";
+import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Error from "../Error";
 import Guide from "../Guide";
