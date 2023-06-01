@@ -9,7 +9,7 @@ export default function Navbar() {
         <LinkOverlay
           as={ReactRouterLink}
           to="/"
-          _hover={{ textDecoration: "underline tomato" }}
+          _hover={{ textDecoration: "underline red" }}
         >
           <Heading size="lg" color="red">
             Help Centre

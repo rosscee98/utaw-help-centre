@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { HashLink } from "react-router-hash-link";
 
-export default function ContentsMenu({ sections }) {
+export default function InlineMenu({ sections }) {
   return (
-    <Accordion allowToggle>
+    <Accordion allowToggle width="100%" marginBottom="30px">
       <AccordionItem>
         <AccordionButton>
           <Text>Contents</Text>
@@ -57,6 +57,6 @@ export default function ContentsMenu({ sections }) {
   );
 }
 
-ContentsMenu.propTypes = {
+InlineMenu.propTypes = {
   sections: PropTypes.array,
 };
