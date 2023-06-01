@@ -1,9 +1,9 @@
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import Navbar from "./helpers/Navbar";
 import { Route, Routes } from "react-router-dom";
-import ErrorPage from "../ErrorPage";
-import GuidePage from "../GuidePage";
-import LandingPage from "../LandingPage";
+import Error from "../Error";
+import Guide from "../Guide";
+import Landing from "../Landing";
 import { useEffect, useState } from "react";
 import { getGuides } from "../../contentService";
 import { DesktopViewContext } from "../../contexts";
@@ -23,15 +23,15 @@ export default function App() {
         <Navbar />
         <Box marginY="20px">
           <Routes>
-            <Route path="/" element={<LandingPage guides={guides} />} />
+            <Route path="/" element={<Landing guides={guides} />} />
             {guides?.map((guide) => (
               <Route
                 path={guide.slug.current}
                 key={guide.slug.current}
-                element={<GuidePage guide={guide} />}
+                element={<Guide guide={guide} />}
               />
             ))}
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </Box>
       </Box>

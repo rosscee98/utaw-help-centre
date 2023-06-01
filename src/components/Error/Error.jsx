@@ -1,7 +1,7 @@
 import { Box, HStack, Heading, Link } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-export default function ErrorPage() {
+export default function Error() {
   return (
     <HStack gap="20px">
       <Box>

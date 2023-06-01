@@ -5,7 +5,7 @@ import SidebarContents from "./components/SidebarMenu";
 import GuideContents from "./components/GuideContents";
 import { DesktopViewContext } from "../../contexts";
 
-export default function GuidePage({ guide }) {
+export default function Guide({ guide }) {
   const isDesktopView = useContext(DesktopViewContext);
 
   useEffect(() => {
@@ -29,6 +29,6 @@ export default function GuidePage({ guide }) {
   );
 }
 
-GuidePage.propTypes = {
+Guide.propTypes = {
   guide: PropTypes.object,
 };

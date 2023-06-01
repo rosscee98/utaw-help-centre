@@ -3,7 +3,7 @@ import { Box, Link, Text } from "@chakra-ui/react";
 import PageGrid from "./components/PageGrid";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-export default function LandingPage({ guides }) {
+export default function Landing({ guides }) {
   return (
     <Box width={{ base: "auto", md: "60vw" }} marginX="auto">
       <Box marginBottom="20px">
@@ -23,6 +23,6 @@ export default function LandingPage({ guides }) {
   );
 }
 
-LandingPage.propTypes = {
+Landing.propTypes = {
   guides: PropTypes.array,
 };
